@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		#ocean {
+			background-image: url("myocean.jpg");
+			width: 900px;
+			height: 700px;
+		}
+		.player {
+			position: absolute;
+			background-image: url("player.png");
+			width: 70px;
+			height: 75px;
+		}
+
+		.enemy {
+			position: absolute;
+			background-image: url("enemy.png");
+			width: 70px;
+			height: 75px;
+			/**left: 300px;
+			top: 300px;**/
+		}
+	</style>
+
+	<div id = "ocean">
+		<div id = "players">
+			<!--<div class = "players"> </div>-->
+		</div>
+		<div id = "enemies">
+			<div class = "enemy"></div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		var player = {
+			left: 400,
+			top: 620
+		}
+
+		var enemies = [
+			{left: 600, top: 200},
+			{left: 100, top: 250},
+			{left: 300, top: 200},
+			{left: 400, top: 250},
+			{left: 200, top: 200},
+			{left: 500, top: 250}
+		]
+
+		function drawPlayer() {
+			content  = 	"<div class = 'player' style = 'left: "+player.left+"px; top:"+player.top+"px'></div>";
+			document.getElementById("players").innerHTML = content;
+		}
+		drawPlayer();
+
+		function drawEnemies() {
+			content = "";
+			//console.log(enemies);
+			for (var idx = 0; idx < enemies.length; idx++){
+				//console.log(idx);
+				content  += "<div class = 'enemy' style = 'left: "+enemies[idx].left+"px; top:"+enemies[idx].top+"px'></div>";
+			}
+			document.getElementById("enemies").innerHTML = content;
+		}
+		drawEnemies();
+
+
+
+		document.onkeydown = function(e) {
+			if(e.keyCode == 37) { //left
+				if(player.left > 0) {
+					player.left = player.left - 10;
+					console.log(player.left);
+				}
+			}
+			if(e.keyCode == 39) { //right
+				if(player.left < 840) {
+					player.left = player.left + 10;
+					console.log(player.left);
+				}
+			}
+			if(e.keyCode == 38) { //up
+				if(player.top > 470) {
+					player.top = player.top - 10;
+					console.log(player.top);
+				}
+			}
+			if(e.keyCode == 40) { //down
+				if(player.top < 630) {
+					player.top = player.top + 10;
+					console.log(player.top);
+				}
+				
+			}
+			drawPlayer();
+		}
+	</script>
+</body>
+</html>
